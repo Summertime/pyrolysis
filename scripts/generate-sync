@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+APP_ID=0623294b7da440e785fae2fe68087c73
+BASH_COMPAT=5.2
+if 
+	[[ ${BASH_COMPAT%.*} -gt ${BASH_VERSINFO[0]}	
+	|| ${BASH_COMPAT%.*} -eq ${BASH_VERSINFO[0]} 
+	&& ${BASH_COMPAT#*.} -gt ${BASH_VERSINFO[1]}
+	]]
+then
+	>&2 printf "Error: Bash's version is %s but script wants %s" \
+		"${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}" \
+		"$BASH_COMPAT"
+	exit 1
+fi
+shopt -s -o errexit nounset noclobber pipefail
+shopt -s extglob globstar lastpipe patsub_replacement
+shopt -s nullglob
+
+if [[ $# -gt 0 && $1 = clean ]]; then
+    for src in ./**/*-async.@(js|ts|jsx|tsx); do
+        dst="${src%-async.@(js|ts|jsx|tsx)}.${src##*.}"
+        if [[ ! -e $dst ]]; then continue; fi
+        echo "${dst@Q}"
+        rm "$dst"
+    done
+    exit
+fi
+for src in ./**/*-async.@(js|ts|jsx|tsx); do
+    dst="${src%-async.@(js|ts|jsx|tsx)}.${src##*.}"
+    echo "${src@Q}  ${dst@Q}"
+    {
+        echo "// Generated from ${src##*/} using $0"
+        sed \
+            -e 's/async //g' \
+            -e 's/await //g' \
+            -e ''
+    } < "$src" >| "$dst"
+done
+
