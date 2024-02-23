@@ -16,24 +16,22 @@ shopt -s -o errexit nounset noclobber pipefail
 shopt -s extglob globstar lastpipe patsub_replacement
 shopt -s nullglob
 
-if [[ $# -gt 0 && $1 = clean ]]; then
+
+if [[ $# -eq 0 ]]; then
+    for src in ./**/*-async.@(js|ts|jsx|tsx); do
+        dst="${src%-async.@(js|ts|jsx|tsx)}.${src##*.}"
+        echo "${src@Q}  ${dst@Q}"
+        {
+            echo "// Generated from ${src##*/} using $0"
+            sed -e 's/async //g' -e 's/await //g'
+        } < "$src" >| "$dst"
+    done
+elif [[ $# -eq 1 && $1 = clean ]]; then
     for src in ./**/*-async.@(js|ts|jsx|tsx); do
         dst="${src%-async.@(js|ts|jsx|tsx)}.${src##*.}"
         if [[ ! -e $dst ]]; then continue; fi
         echo "${dst@Q}"
         rm "$dst"
     done
-    exit
 fi
-for src in ./**/*-async.@(js|ts|jsx|tsx); do
-    dst="${src%-async.@(js|ts|jsx|tsx)}.${src##*.}"
-    echo "${src@Q}  ${dst@Q}"
-    {
-        echo "// Generated from ${src##*/} using $0"
-        sed \
-            -e 's/async //g' \
-            -e 's/await //g' \
-            -e ''
-    } < "$src" >| "$dst"
-done
 
