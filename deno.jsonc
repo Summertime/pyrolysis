@@ -1,0 +1,37 @@
+{
+  "exports": {
+    "./builtins": "./builtins/mod.ts",
+    "./itertools": "./itertools/mod.ts"
+  },
+  "lint": {
+    "rules": {
+      "exclude": [
+        "no-explicit-any"
+      ],
+      "include": [
+        "eqeqeq",
+        "explicit-function-return-type",
+        "explicit-module-boundary-types",
+        "guard-for-in",
+        "no-await-in-loop",
+        "no-console",
+        "no-const-assign",
+        "no-eval",
+        "no-external-import",
+        "no-implicit-declare-namespace-export",
+        "no-inferrable-types",
+        "no-non-null-asserted-optional-chain",
+        "no-non-null-assertion",
+        "no-self-compare",
+        "no-sparse-arrays",
+        "no-throw-literal",
+        "no-undef",
+        "prefer-ascii",
+        "single-var-declarator",
+        "triple-slash-reference"
+      ]
+    }
+  },
+  "name": "@summer/pyrolysis",
+  "version": "0.6.2"
+}
