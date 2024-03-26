@@ -2,8 +2,8 @@ const unset = Symbol("unset"); // Python checks args length, emulating
 export async function reduce<T>(
   func: (a: T, b: T) => T,
   iterable: AsyncIterable<T>,
-  initializer: T = unset,
-): T {
+  initializer: T | typeof unset = unset,
+): Promise<T> {
   let value = initializer;
   for await (const item of iterable) {
     if (value === unset) {
