@@ -1,7 +1,8 @@
 {
   "exports": {
     "./builtins": "./builtins/mod.ts",
-    "./itertools": "./itertools/mod.ts"
+    "./itertools": "./itertools/mod.ts",
+    "./functools": "./functools/mod.ts"
   },
   "lint": {
     "rules": {
@@ -33,5 +34,5 @@
     }
   },
   "name": "@summer/pyrolysis",
-  "version": "0.8.0"
+  "version": "0.9.0"
 }
