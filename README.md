@@ -2,14 +2,11 @@
 
 Python-like utilities for JS-like programs.
 
-## Usage
-
-Currently Deno's third party modules service is the preferred way of using these
-utilities:
+## Example
 
 ```ts
 import { all } from "jsr:@summer/builtins";
-console.log(all(["a", "b", "c"]));
+console.log(await all(["a", "b", "c"]));
 // true
 ```
 
@@ -35,68 +32,3 @@ license is duplicated to the `python.LICENSE` file.
 Everything else (Original code, others) is licensed under the
 [Unlicense](https://unlicense.org/). The text of the license is duplicated to
 the `UNLICENSE` file.
-
-## Progress
-
-### `builtins`
-
-#### Done
-
-- `all()`
-- `any()`
-- `range()`
-
-#### Todo
-
-- `abs()`
-- `enumerate()`
-- `filter()`
-- `iter()`
-- `len()`
-- `map()`
-- `max()`
-- `min()`
-- `reversed()`
-- `sorted()`
-- `zip()`
-
-#### Low priority / Not applicable
-
-`aiter()`, `anext()`, `ascii()`, `bin()`, `bool()`, `breakpoint()`,
-`bytearray()`, `bytes()`, `callable()`, `chr()`, `classmethod()`, `compile()`,
-`complex()`, `delattr()`, `dict()`, `dir()`, `divmod()`, `eval()`, `exec()`,
-`float()`, `format()`, `frozenset()`, `getattr()`, `globals()`, `hasattr()`,
-`hash()`, `help()`, `hex()`, `id()`, `__import__()`, `input()`, `int()`,
-`isinstance()`, `issubclass()`, `list()`, `locals()`, `memoryview()`, `next()`,
-`object()`, `oct()`, `open()`, `ord()`, `pow()`, `print()`, `property()`,
-`repr()`, `round()`, `set()`, `setattr()`, `slice()`, `staticmethod()`, `str()`,
-`sum()`, `super()`, `tuple()`, `type()`, `vars()`
-
-### `itertools`
-
-#### Done
-
-- `count()`
-- `cycle()`
-
-#### Todo
-
-- `repeat()`
-- `accumulate()`
-- `batched()`
-- `chain()`
-- `chain.from_iterable()`
-- `compress()`
-- `dropwhile()`
-- `filterfalse()`
-- `groupby()`
-- `islice()`
-- `pairwise()`
-- `starmap()`
-- `takewhile()`
-- `tee()`
-- `zip_longest()`
-- `product()`
-- `permutations()`
-- `combinations()`
-- `combinations_with_replacement()`
